@@ -63,7 +63,10 @@ fn decode(bytes: &[u8]) -> Result<Vec<Value>, String> {
     }
 
     if !reader.bytes.is_empty() {
-        return Err(format!("{} unexpected bytes after record", reader.bytes.len()));
+        return Err(format!(
+            "{} unexpected bytes after record",
+            reader.bytes.len()
+        ));
     }
     Ok(row)
 }
@@ -76,10 +79,12 @@ struct Reader<'a> {
 
 impl<'a> Reader<'a> {
     fn take_slice(&mut self, n: usize) -> Result<&'a [u8], String> {
-        let (head, rest) = self
-            .bytes
-            .split_at_checked(n)
-            .ok_or_else(|| format!("record cut short: wanted {n} bytes, {} left", self.bytes.len()))?;
+        let (head, rest) = self.bytes.split_at_checked(n).ok_or_else(|| {
+            format!(
+                "record cut short: wanted {n} bytes, {} left",
+                self.bytes.len()
+            )
+        })?;
         self.bytes = rest;
         Ok(head)
     }
