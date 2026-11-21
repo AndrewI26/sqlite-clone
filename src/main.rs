@@ -1,5 +1,6 @@
 mod pager;
 mod parser;
+mod record;
 
 use std::io::{self, BufRead, Write};
 
