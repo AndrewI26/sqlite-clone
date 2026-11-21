@@ -138,7 +138,9 @@ mod tests {
     fn select() {
         assert_eq!(
             parse("SELECT * FROM users;").unwrap(),
-            Statement::Select { table: "users".into() }
+            Statement::Select {
+                table: "users".into()
+            }
         );
     }
 

@@ -73,7 +73,9 @@ pub fn tokenize(input: &str) -> Result<Vec<Token>, String> {
                     break;
                 }
             }
-            let n = num.parse().map_err(|_| format!("number too large: {num}"))?;
+            let n = num
+                .parse()
+                .map_err(|_| format!("number too large: {num}"))?;
             tokens.push(Token::Int(n));
         } else if c == '\'' {
             chars.next(); // opening quote
